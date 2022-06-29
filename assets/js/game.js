@@ -8,7 +8,7 @@ let questions = [
 let buttonsDiv = document.querySelector("#buttons")
 
 let timerDisplay = document.querySelector("#timer")
-let mess
+let messageDisplay = document.querySelector("#message")
 
 
 //queryselectors
@@ -17,6 +17,7 @@ document.querySelector("#startButton").addEventListener("click", playGame)
 
 //functions
 function playGame(){
+  
   let secondsLeft = 5;
   newQuestion()
   let timer = setInterval(function(){
@@ -31,9 +32,10 @@ function playGame(){
 }
 
 function newQuestion(){
-
-  buttonsDiv.innerHTML = "";
   let randomIndex = Math.floor(Math.random() * questions.length);
+  messageDisplay.textContent =  questions[randomIndex].question
+  buttonsDiv.innerHTML = "";
+  
   questions[randomIndex].options.forEach(e =>{
     let button = document.createElement("button")
     button.textContent = e
