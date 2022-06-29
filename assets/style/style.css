@@ -12,3 +12,9 @@ main{
 main div{
   text-align: center;
 }
+#buttons{
+  align-items: center;
+}
+#buttons button{
+  display: block;
+}
