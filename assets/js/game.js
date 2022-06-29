@@ -17,7 +17,6 @@ document.querySelector("#startButton").addEventListener("click", playGame)
 
 //functions
 function playGame(){
-  
   let secondsLeft = 5;
   newQuestion()
   let timer = setInterval(function(){
@@ -37,9 +36,10 @@ function newQuestion(){
   buttonsDiv.innerHTML = "";
   
   questions[randomIndex].options.forEach(e =>{
-    let button = document.createElement("button")
-    button.textContent = e
-    buttonsDiv.appendChild(button)
+    let Ebutton = document.createElement("button")
+    Ebutton.textContent = e
+    Ebutton.style.margin = "2vh 0"
+    buttonsDiv.appendChild(Ebutton)
   })
 }
 function stopGame(){}

@@ -6,15 +6,16 @@ header{
 
 /* main */
 main{
-  margin: 5vh 20%;
+  margin: 10vh 20%;
   align-items: center;
 }
 main div{
   text-align: center;
 }
 #buttons{
-  align-items: center;
+  margin: 3vh 35%
 }
-#buttons button{
+button{
   display: block;
+  margin:  2vh auto;
 }
