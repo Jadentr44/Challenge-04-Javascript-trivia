@@ -1,1 +1,14 @@
-/*  */
+/*header*/
+header{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* main */
+main{
+  margin: 5vh 20%;
+  align-items: center;
+}
+main div{
+  text-align: center;
+}
