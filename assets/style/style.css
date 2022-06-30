@@ -19,10 +19,15 @@ button{
   display: block;
   margin:  2vh auto;
 }
+
 input{
   margin: auto;
   display: block;
 }
 #highscore{
   margin-top: 0
+}
+li{
+  margin: 0 40%;
+  display: flex;
 }

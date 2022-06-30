@@ -11,13 +11,18 @@
 <body>
   <header id="info">
     <div ><button id="highscore">see highscores</button></div>
-    <div id="score"></div>
+    <div >score:<span id="score">0</span></div>
     <div >Time left : <span id="timer">5</span></div>
   </header>
-  <main>
-    <div id="display"><h1>Coding Quiz Challenge</h1>
+  <main id="main" data-status="game">
+    <div id="display"><h1 id="h1">Coding Quiz Challenge</h1>
     <p id="message">Try to answer a 5 questions in 30 seconds</p></div>
     <div id="buttons"><button id="startButton">start</button></div>
+  <div id="highscore">
+    <ul id="scores">
+      
+    </ul>
+  </div></main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   

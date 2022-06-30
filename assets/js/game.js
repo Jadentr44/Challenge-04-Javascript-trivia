@@ -15,9 +15,8 @@ let allQuestions = [
 ]
 let questions = [];
 let highscoreArr = JSON.parse(localStorage.getItem("highscoreData"));
-console.log(highscoreArr)
 if(highscoreArr == null){highscoreArr = []}
-let score = 0;
+let score ;
 let timer;
 let initals = $('#input');
 let buttonsDiv = $('#buttons')
@@ -29,13 +28,13 @@ let scoreDisplay = $('#score')
 
 //start buttons 
 $('#startButton').on('click',playGame)
-
+$('#highscore').on('click',toggleDisplay)
 document.addEventListener('keydown', function (e) {
   initals = $('#input')
   let key = e.key
   
   if(key == 'Enter'){
-    console.log(initals.val())
+    
     if(initals.val()!= undefined){
      let stats={
       initial:"",
@@ -54,10 +53,12 @@ document.addEventListener('keydown', function (e) {
 
 //functions
 function playGame(){
+  score = 0;
   initals.prop('readonly',false)
   questions =  questions.concat(allQuestions)
   console.log(questions)
-  let secondsLeft = 3;
+  let secondsLeft = 30;
+  timerDisplay.text(secondsLeft)
   newQuestion()
   timer = setInterval(function(){
     secondsLeft--;
@@ -115,6 +116,7 @@ function correct(){
 
 function wrong(){
   score -= 3;
+  scoreDisplay.text(score)
   flashColor("red")
 }
 function flashColor(color){
@@ -130,10 +132,59 @@ function flashColor(color){
   header.css("background-color","white")
       clearInterval(colorTimer)
     }
-    console.log(index)
+    
     index++;
   },50)
 }
 function toggleDisplay(){
+  let mainDiv = $('#main')
+  if(mainDiv.attr("data-status") == 'game'){
+    mainDiv.attr("data-status","highscore")
+    let orderedArr = []
+    $('#h1').text("top 5 Highscores")
+    messageDisplay.text("")
+    buttonsDiv.html("")
+    highscoreArr.forEach(e =>{
+      let index = 0;
+      if(orderedArr.length == 0){
+        orderedArr.unshift(e)
+      }else{
+        let maxScoreShowing;
+        if(orderedArr.length > 4){maxScoreShowing = 5}
+        else{maxScoreShowing = orderedArr}
+        console.log(maxScoreShowing)
+        for(let i=0;i<maxScoreShowing.length;i++){
+          if(e.score > orderedArr[i].score){
+            orderedArr.splice(i,0,e);
+            break
+          } else if(i == orderedArr.length-1){
+            orderedArr.push(e)
+            break;
+          }
+          
 
+
+        
+        }
+      }
+    })
+    orderedArr.forEach(e =>{
+      let index = 1;
+      let li = $('<li>')
+      let nameDiv = $('<div>')
+      let colon = $('<span>')
+      colon.text(':')
+      nameDiv.text(e.initial)
+      let scoreDiv = $('<div>')
+      scoreDiv.text(e.score)
+      li.append(nameDiv)
+      li.append(colon)
+      li.append(scoreDiv)
+      $('#scores').append(li)
+      index++;
+    })
+  }
+  else{
+    mainDiv.attr("data-status","game")
+  }
 }
