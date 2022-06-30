@@ -1,5 +1,5 @@
 // global varaibales
-let questions = [
+let allQuestions = [
   {question:"What HTML element do we put the JavaSript in?",
   options:["<javascript>","<js>","<script>","<scripting>"],
   answer:"<script>"},
@@ -7,40 +7,51 @@ let questions = [
   options:[`<script name="xxx.js">`,`<script src="xxx.js">`,`<script href="xxx.js">`,],
   answer:`<script src="xxx.js">`},
   {question:`Which of the following declares a variable?`,
-  options:[`var`,`let`,`const`,`all of the above`],
-  answer:`all of the above`},
-  {question:`Which of the following declares a variable?`,
-  options:[`var`,`let`,`const`,`all of the above`],
-  answer:`all of the above`},
+  options:[`var`,`let`,`const`,`all of them`],
+  answer:`all of them`},
   {question:`JavaScript is a ___ -side programming language.`,
   options:[`client`,`server`,`both`,`none`],
   answer:`both`},
 ]
+let questions = [];
+let timer;
 
 let buttonsDiv = $('#buttons')
 let messageDisplay = $('#message')
 let timerDisplay = $('#timer')
+ let initals = $('#input')
 
 
 //start buttons 
 $('#startButton').on('click',playGame)
 
+document.addEventListener('keydown', function (e) {
+  let key = e.key
+  if(key == 'Enter'){
+    if(initals.val()!= undefined || initals.val() != null){
+      console.log("empty")
+    }
+  }
+});
+
 //functions
 function playGame(){
-  let secondsLeft = 6;
+  questions =  questions.concat(allQuestions)
+  console.log(questions)
+  let secondsLeft = 30;
   newQuestion()
-  let timer = setInterval(function(){
+  timer = setInterval(function(){
     secondsLeft--;
     timerDisplay.text(secondsLeft)
     if(secondsLeft == 0){
-      clearInterval(timer)
-      // stopGame()
+      
+      stopGame()
     }
   },1000)
 }
 
 function newQuestion(){
-  
+  if(questions.length > 0){
   let randomIndex = Math.floor(Math.random() * questions.length);
   messageDisplay.text(questions[randomIndex].question)
   buttonsDiv.html("")
@@ -55,9 +66,16 @@ function newQuestion(){
     buttonEl.css("margin","2vh 0")
     buttonsDiv.append(buttonEl)
   })
+  questions.splice(randomIndex,1)
+}else{stopGame()}
+  console.log(questions)
 }
 function stopGame(){
-  messageDisplay.text("Your Time Ran Out")
+  clearInterval(timer)
+  messageDisplay.html("Your Time Ran Out</br>enter initals")
+  let inputDiplay = $('<input>')
+  inputDiplay.attr("id","input")
+  messageDisplay.append(inputDiplay)
   buttonsDiv.html("")
   let buttonEL = $('<button>')
   buttonEL.text("play again?")
@@ -66,7 +84,6 @@ function stopGame(){
 }
 function checkButton(e){
   let inputCorrect = e.target.dataset.correct
-  console.log(inputCorrect)
   if(inputCorrect == "true"){correct()}
   else{wrong()}
 }
