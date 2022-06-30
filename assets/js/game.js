@@ -14,22 +14,39 @@ let allQuestions = [
   answer:`both`},
 ]
 let questions = [];
+let highscoreArr = JSON.parse(localStorage.getItem("highscoreData"));
+console.log(highscoreArr)
+if(highscoreArr == null){highscoreArr = []}
+let score = 0;
 let timer;
 
 let buttonsDiv = $('#buttons')
 let messageDisplay = $('#message')
 let timerDisplay = $('#timer')
- let initals = $('#input')
+let scoreDisplay = $('#score')
+
 
 
 //start buttons 
 $('#startButton').on('click',playGame)
 
 document.addEventListener('keydown', function (e) {
+  let initals = $('#input')
   let key = e.key
+
   if(key == 'Enter'){
-    if(initals.val()!= undefined || initals.val() != null){
-      console.log("empty")
+    console.log(initals.val())
+    if(initals.val()!= undefined){
+     let stats={
+      initial:"",
+      score:""
+     }
+     stats.initial = initals.val()
+     stats.score = score
+     initals.val("")
+     highscoreArr.unshift(stats)
+     localStorage.setItem("highscoreData",JSON.stringify(highscoreArr))
+
     }
   }
 });
@@ -38,7 +55,7 @@ document.addEventListener('keydown', function (e) {
 function playGame(){
   questions =  questions.concat(allQuestions)
   console.log(questions)
-  let secondsLeft = 30;
+  let secondsLeft = 3;
   newQuestion()
   timer = setInterval(function(){
     secondsLeft--;
@@ -51,6 +68,7 @@ function playGame(){
 }
 
 function newQuestion(){
+  scoreDisplay.text(score)
   if(questions.length > 0){
   let randomIndex = Math.floor(Math.random() * questions.length);
   messageDisplay.text(questions[randomIndex].question)
@@ -88,12 +106,13 @@ function checkButton(e){
   else{wrong()}
 }
 function correct(){
-
+  score += 7;
   flashColor("green")
   newQuestion()
 }
 
 function wrong(){
+  score -= 3;
   flashColor("red")
 }
 function flashColor(color){
