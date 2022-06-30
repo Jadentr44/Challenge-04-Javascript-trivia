@@ -23,3 +23,6 @@ input{
   margin: auto;
   display: block;
 }
+#highscore{
+  margin-top: 0
+}

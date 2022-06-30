@@ -19,7 +19,7 @@ console.log(highscoreArr)
 if(highscoreArr == null){highscoreArr = []}
 let score = 0;
 let timer;
-
+let initals = $('#input');
 let buttonsDiv = $('#buttons')
 let messageDisplay = $('#message')
 let timerDisplay = $('#timer')
@@ -31,9 +31,9 @@ let scoreDisplay = $('#score')
 $('#startButton').on('click',playGame)
 
 document.addEventListener('keydown', function (e) {
-  let initals = $('#input')
+  initals = $('#input')
   let key = e.key
-
+  
   if(key == 'Enter'){
     console.log(initals.val())
     if(initals.val()!= undefined){
@@ -46,6 +46,7 @@ document.addEventListener('keydown', function (e) {
      initals.val("")
      highscoreArr.unshift(stats)
      localStorage.setItem("highscoreData",JSON.stringify(highscoreArr))
+     initals.prop('readonly',true)
 
     }
   }
@@ -53,6 +54,7 @@ document.addEventListener('keydown', function (e) {
 
 //functions
 function playGame(){
+  initals.prop('readonly',false)
   questions =  questions.concat(allQuestions)
   console.log(questions)
   let secondsLeft = 3;
@@ -131,4 +133,7 @@ function flashColor(color){
     console.log(index)
     index++;
   },50)
+}
+function toggleDisplay(){
+
 }
