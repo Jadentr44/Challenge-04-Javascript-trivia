@@ -1,4 +1,4 @@
-
+/* giving the background the mario and font of press start 2p */
 body{
   background: url("https://i.pinimg.com/originals/71/11/93/71119363f45e2e8391458b2df0e4d6f2.jpg");
   background-repeat: no-repeat;
@@ -8,11 +8,14 @@ body{
 }
 
 /*header*/
+/* aligning the tip inof */
 header{
   display: flex;
   justify-content: space-between;
+	/* giving a background color, but 0 opacity */
   background: rgb(0, 250, 0,.0);
 }
+/* aligning the score, highscore button and time left divs */
 #scoreDiv{
   width: 20%;
 }
@@ -23,29 +26,30 @@ header{
 #toggleDiv{
   align-items: center;
 }
+
 /* main */
 main{
   padding: 2%;
   margin: 7vh 30%;
-  /* height: 30vh; */
   align-items: center;
   justify-content: center;
-  /* border: solid 1px;
-  border-radius: 20%; */
+	/* to cover up unwanted background */
   background-color: #9394ff;
 }
+/* spacing in the main */
 main p {
   margin-top: 3%;
 }
 main div{
   text-align: center;
 }
-
+/* the div that the buttons are in */
 #buttons{
   font-size: 1.5rem;
   font-family: 'Strait', sans-serif;
   margin: 3vh 2%
 }
+/* styling all the buttons on the page */
 button{
   color: white;
   display: block;
@@ -57,7 +61,7 @@ button{
   border: solid 1px black;
   
 }
-
+/* centering the initials input */
 input{
   margin: auto;
   display: block;
