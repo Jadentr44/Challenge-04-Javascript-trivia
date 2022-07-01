@@ -13,11 +13,20 @@ header{
   justify-content: space-between;
   background: rgb(0, 250, 0,.0);
 }
-
+#scoreDiv{
+  width: 20%;
+}
+#timeDiv{
+  width: 20%;
+  text-align: end;
+}
+#toggleDiv{
+  align-items: center;
+}
 /* main */
 main{
   padding: 2%;
-  margin: 7vh 35%;
+  margin: 7vh 30%;
   /* height: 30vh; */
   align-items: center;
   justify-content: center;
@@ -25,13 +34,16 @@ main{
   border-radius: 20%; */
   background-color: #9394ff;
 }
+main p {
+  margin-top: 3%;
+}
 main div{
   text-align: center;
 }
 
 #buttons{
  
-  margin: 3vh 13%
+  margin: 3vh 2%
 }
 button{
   color: white;
@@ -42,6 +54,7 @@ button{
   background-size: 90px ;
   padding: 1%;
   border: solid 1px black;
+  
 }
 
 input{

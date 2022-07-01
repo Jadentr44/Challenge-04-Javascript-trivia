@@ -12,6 +12,9 @@ let allQuestions = [
   {question:`JavaScript is a ___ -side programming language.`,
   options:[`client`,`server`,`both`,`none`],
   answer:`both`},
+  {question:`Which of the following is a string`,
+  options:[`"number"`,`{type:string}`,`[string]`,`array`],
+  answer:`"number"`}
 ]
 let questions = [];
 let highscoreArr = JSON.parse(localStorage.getItem("highscoreData"));
@@ -20,17 +23,19 @@ let currentAnswer;
 
 let score ;
 let timer;
+let stopTimer = false;
 let initals = $('#input');
 let buttonsDiv = $('#buttons')
 let messageDisplay = $('#message')
 let timerDisplay = $('#timer')
 let scoreDisplay = $('#score')
+let mainDiv = $('#main')
 
 
 
 //start buttons 
 $('#startButton').on('click',playGame)
-$('#highscore').on('click',toggleDisplay)
+$('#toggle').on('click',toggleDisplay)
 document.addEventListener('keydown', function (e) {
   initals = $('#input')
   let key = e.key
@@ -55,6 +60,7 @@ document.addEventListener('keydown', function (e) {
 
 //functions
 function playGame(){
+  stopTimer = false
   score = 0;
   initals.prop('readonly',false)
   questions =  questions.concat(allQuestions)
@@ -63,11 +69,14 @@ function playGame(){
   timerDisplay.text(secondsLeft)
   newQuestion()
   timer = setInterval(function(){
+    if($("main").attr("data-status") != 'game'){
+      clearInterval(timer)
+    }
     secondsLeft--;
     timerDisplay.text(secondsLeft)
-    if(secondsLeft == 0){
+    if(secondsLeft < 1 || stopTimer){
       
-      // stopGame()
+      stopGame()
     }
   },1000)
 }
@@ -139,7 +148,7 @@ function flashColor(color){
   },50)
 }
 function toggleDisplay(){
-  let mainDiv = $('#main')
+  
   if(mainDiv.attr("data-status") == 'game'){
     mainDiv.attr("data-status","highscore")
     let orderedArr = []
@@ -185,8 +194,17 @@ function toggleDisplay(){
       $('#scores').append(li)
       index++;
     })
+    $("#toggle").text("go to game")
   }
   else{
     mainDiv.attr("data-status","game")
+    $('#h1').text("JavaScript Syntax Trivia")
+    messageDisplay.text("Try to answer 5 questions in 30 seconds")
+    $('#scores').text("")
+    let buttonEL = $('<button>')
+  buttonEL.text("play game")
+  buttonEL.attr('onclick','playGame();')
+  buttonsDiv.append(buttonEL)
+  $("#toggle").text("see highscores")
   }
 }
