@@ -1,23 +1,47 @@
+
+body{
+  background: url("https://i.pinimg.com/originals/71/11/93/71119363f45e2e8391458b2df0e4d6f2.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  font-family: 'Press Start 2P', cursive;
+  padding: 2%;
+}
+
 /*header*/
 header{
   display: flex;
   justify-content: space-between;
+  background: rgb(0, 250, 0,.0);
 }
 
 /* main */
 main{
-  margin: 10vh 20%;
+  padding: 2%;
+  margin: 7vh 35%;
+  /* height: 30vh; */
   align-items: center;
+  justify-content: center;
+  /* border: solid 1px;
+  border-radius: 20%; */
+  background-color: #9394ff;
 }
 main div{
   text-align: center;
 }
+
 #buttons{
-  margin: 3vh 35%
+ 
+  margin: 3vh 13%
 }
 button{
+  color: white;
   display: block;
   margin:  2vh auto;
+  background: url("https://art.pixilart.com/86dd5b04327571c.png") ;
+  background-repeat: repeat-x;
+  background-size: 90px ;
+  padding: 1%;
+  border: solid 1px black;
 }
 
 input{
@@ -31,3 +55,86 @@ li{
   margin: 0 40%;
   display: flex;
 }
+
+
+
+/* This css comes from code pen and pixelates the border, read me has more info */
+:root {
+	--pixel-bg:  #9394ff;
+	/* ↑ Inner background color */
+	
+	--pixel-border: black;
+	/* ↑ Inner border color */
+	
+	--pixel-border-2: white;
+	/* ↑ Middle border color */
+	
+	--pixel-border-3: var(--pixel-border);
+	/* ↑ Outer border color */
+	
+	--pixel: .125rem;
+	/* ↑ Pixel size */
+}
+
+.pixel-border {
+	/* background: var(--pixel-bg); */
+	box-shadow:
+		
+	/* Inner Background Color */
+		0 calc(var(--pixel) * -3) 0 calc(var(--pixel) * -1) var(--pixel-bg),
+		0 calc(var(--pixel) * 3) 0 calc(var(--pixel) * -1) var(--pixel-bg),
+		0 calc(var(--pixel) * -6) 0 calc(var(--pixel) * -2) var(--pixel-bg),
+		0 calc(var(--pixel) * 6) 0 calc(var(--pixel) * -2) var(--pixel-bg),
+		0 calc(var(--pixel) * -9) 0 calc(var(--pixel) * -4) var(--pixel-bg),
+		0 calc(var(--pixel) * 9) 0 calc(var(--pixel) * -4) var(--pixel-bg),
+		0 calc(var(--pixel) * -12) 0 calc(var(--pixel) * -6) var(--pixel-bg),
+		0 calc(var(--pixel) * 12) 0 calc(var(--pixel) * -6) var(--pixel-bg),
+		
+	/* Pixel Border Layer 1 */
+		calc(var(--pixel) * -1) 0 0 0 var(--pixel-border),
+		var(--pixel) 0 0 0 var(--pixel-border),
+		0 calc(var(--pixel) * -2) 0 0 var(--pixel-border),
+		0 calc(var(--pixel) * 2) 0 0 var(--pixel-border),
+		0 calc(var(--pixel) * -5) 0 calc(var(--pixel) * -1) var(--pixel-border),
+		0 calc(var(--pixel) * 5) 0 calc(var(--pixel) * -1) var(--pixel-border),
+		0 calc(var(--pixel) * -7) 0 calc(var(--pixel) * -2) var(--pixel-border),
+		0 calc(var(--pixel) * 7) 0 calc(var(--pixel) * -2) var(--pixel-border),
+		0 calc(var(--pixel) * -10) 0 calc(var(--pixel) * -4) var(--pixel-border),
+		0 calc(var(--pixel) * 10) 0 calc(var(--pixel) * -4) var(--pixel-border),
+		0 calc(var(--pixel) * -13) 0 calc(var(--pixel) * -6) var(--pixel-border),
+		0 calc(var(--pixel) * 13) 0 calc(var(--pixel) * -6) var(--pixel-border),
+		
+	/* Pixel Border Layer 2 */
+		calc(var(--pixel) * -2) 0 0 0 var(--pixel-border-2),
+		calc(var(--pixel) * 2) 0 0 0 var(--pixel-border-2),
+		0 calc(var(--pixel) * -1) 0 var(--pixel) var(--pixel-border-2), 
+		0 var(--pixel) 0 var(--pixel) var(--pixel-border-2),
+		0 calc(var(--pixel) * -4) 0 0 var(--pixel-border-2),
+		0 calc(var(--pixel) * 4) 0 0 var(--pixel-border-2),
+		0 calc(var(--pixel) * -6) 0 calc(var(--pixel) * -1) var(--pixel-border-2),
+		0 calc(var(--pixel) * 6) 0 calc(var(--pixel) * -1) var(--pixel-border-2),
+		0 calc(var(--pixel) * -8) 0 calc(var(--pixel) * -2) var(--pixel-border-2),
+		0 calc(var(--pixel) * 8) 0 calc(var(--pixel) * -2) var(--pixel-border-2),
+		0 calc(var(--pixel) * -11) 0 calc(var(--pixel) * -4) var(--pixel-border-2),
+		0 calc(var(--pixel) * 11) 0 calc(var(--pixel) * -4) var(--pixel-border-2),
+		0 calc(var(--pixel) * -14) 0 calc(var(--pixel) * -6) var(--pixel-border-2),
+		0 calc(var(--pixel) * 14) 0 calc(var(--pixel) * -6) var(--pixel-border-2),
+		
+	/* Border Layer 3: --pixel-border-3 */
+		calc(var(--pixel) * -3) 0 0 0 var(--pixel-border-3),
+		calc(var(--pixel) * 3) 0 0 0 var(--pixel-border-3),
+		0 0 0 calc(var(--pixel) * 2) var(--pixel-border-3),
+		0 calc(var(--pixel) * -3) 0 var(--pixel) var(--pixel-border-3),
+		0 calc(var(--pixel) * 3) 0 var(--pixel) var(--pixel-border-3),
+		0 calc(var(--pixel) * -5) 0 0 var(--pixel-border-3),
+		0 calc(var(--pixel) * 5) 0 0 var(--pixel-border-3),
+		0 calc(var(--pixel) * -7) 0 calc(var(--pixel) * -1) var(--pixel-border-3),
+		0 calc(var(--pixel) * 7) 0 calc(var(--pixel) * -1) var(--pixel-border-3),
+		0 calc(var(--pixel) * -9) 0 calc(var(--pixel) * -2) var(--pixel-border-3), 
+		0 calc(var(--pixel) * 9) 0 calc(var(--pixel) * -2) var(--pixel-border-3),
+		0 calc(var(--pixel) * -12) 0 calc(var(--pixel) * -4) var(--pixel-border-3), 
+		0 calc(var(--pixel) * 12) 0 calc(var(--pixel) * -4) var(--pixel-border-3),
+		0 calc(var(--pixel) * -15) 0 calc(var(--pixel) * -6) var(--pixel-border-3), 
+		0 calc(var(--pixel) * 15) 0 calc(var(--pixel) * -6) var(--pixel-border-3);
+}
+

@@ -16,6 +16,8 @@ let allQuestions = [
 let questions = [];
 let highscoreArr = JSON.parse(localStorage.getItem("highscoreData"));
 if(highscoreArr == null){highscoreArr = []}
+let currentAnswer;
+
 let score ;
 let timer;
 let initals = $('#input');
@@ -65,7 +67,7 @@ function playGame(){
     timerDisplay.text(secondsLeft)
     if(secondsLeft == 0){
       
-      stopGame()
+      // stopGame()
     }
   },1000)
 }
@@ -73,15 +75,14 @@ function playGame(){
 function newQuestion(){
   scoreDisplay.text(score)
   if(questions.length > 0){
-  let randomIndex = Math.floor(Math.random() * questions.length);
+    let randomIndex = Math.floor(Math.random() * questions.length);
   messageDisplay.text(questions[randomIndex].question)
   buttonsDiv.html("")
-
+ currentAnswer = questions[randomIndex].answer
   questions[randomIndex].options.forEach(e =>{
     let buttonEl = $('<button>')
-    if(e ==  questions[randomIndex].answer ){
-      buttonEl.attr("data-correct","true")
-    }else{buttonEl.attr("data-correct","false")}
+      buttonEl.attr("data-text",e)
+    
     buttonEl.on('click', checkButton)
     buttonEl.text(e)
     buttonEl.css("margin","2vh 0")
@@ -104,20 +105,20 @@ function stopGame(){
   buttonsDiv.append(buttonEL)
 }
 function checkButton(e){
-  let inputCorrect = e.target.dataset.correct
-  if(inputCorrect == "true"){correct()}
+  let buttonText = e.target.dataset.text
+  if(buttonText == currentAnswer){correct()}
   else{wrong()}
 }
 function correct(){
   score += 7;
-  flashColor("green")
+  flashColor("0,250,0")
   newQuestion()
 }
 
 function wrong(){
   score -= 3;
   scoreDisplay.text(score)
-  flashColor("red")
+  flashColor("250,0,0")
 }
 function flashColor(color){
   let header = $("#info")
@@ -125,14 +126,15 @@ function flashColor(color){
   let colorTimer = setInterval(function(){
     if(index == 1){
       header.css("transition",".5s")
-  header.css("background-color",color)
+     
+  header.css("background",`rgb(${color},.7)`)
     }
-    else if(index == 6){
+    else if(index == 8){
       header.css("transition",".5s")
-  header.css("background-color","white")
+      header.css("background",`rgb(0,0,0,0)`)
       clearInterval(colorTimer)
     }
-    
+    console.log(index)
     index++;
   },50)
 }
