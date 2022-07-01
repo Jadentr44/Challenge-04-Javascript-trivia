@@ -24,6 +24,7 @@ let currentAnswer;
 let score ;
 let timer;
 let stopTimer = false;
+let secondsLeft;
 let initals = $('#input');
 let buttonsDiv = $('#buttons')
 let messageDisplay = $('#message')
@@ -65,7 +66,7 @@ function playGame(){
   initals.prop('readonly',false)
   questions =  questions.concat(allQuestions)
   console.log(questions)
-  let secondsLeft = 30;
+  secondsLeft = 30;
   timerDisplay.text(secondsLeft)
   newQuestion()
   timer = setInterval(function(){
@@ -102,8 +103,9 @@ function newQuestion(){
   console.log(questions)
 }
 function stopGame(){
+  scoreDisplay.text(score + secondsLeft)
   clearInterval(timer)
-  messageDisplay.html("Your Time Ran Out</br>enter initals")
+  messageDisplay.html("Game over</br>enter initals and</br>click 'enter'")
   let inputDiplay = $('<input>')
   inputDiplay.attr("id","input")
   messageDisplay.append(inputDiplay)

@@ -42,7 +42,8 @@ main div{
 }
 
 #buttons{
- 
+  font-size: 1.5rem;
+  font-family: 'Strait', sans-serif;
   margin: 3vh 2%
 }
 button{
